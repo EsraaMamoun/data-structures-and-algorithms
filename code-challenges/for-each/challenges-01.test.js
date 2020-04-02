@@ -61,10 +61,9 @@ Return the modified array.
 
 const removeOne = (num, arr) => {
   // Solution code here...
-  for (let i = 0; i < arr.length; i++) {
-    if (num % 3 === 2) {
-      arr.pop();
-    }
+  num = num % 3;
+  if (num === 2) {
+    arr.pop();
   }
   return arr;
 };
@@ -72,7 +71,7 @@ const removeOne = (num, arr) => {
 const removeElements = (arr, callback) => {
   // Solution code here...
   for (let i = 0; i < arr.length; i++) {
-    callback(arr);
+    callback(arr[i], arr);
   }
   return arr;
 };
@@ -85,12 +84,10 @@ Write a function named removeWithForEach that produces the same output as challe
 
 const removeWithForEach = (arr, callback) => {
   // Solution code here...
-  arr.forEach(num => {
-    if (num % 3 === 2) {
-      arr.pop();
-    }
+  arr.forEach(function (value, arr) {
+    callback(value, arr);
   });
-  return callback(arr);
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -105,6 +102,12 @@ This anonymous function should accept up to three arguments: the element, the in
 
 const removeWithAnon = (arr) => {
   // Solution code here...
+  arr.forEach((el) => {
+    if (el % 3 === 2) {
+      arr.pop();
+    }
+  });
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -144,18 +147,19 @@ Return the resulting output array.
 
 const fizzbuzz = (arr) => {
   // Solution code here...
-  arr.forEach=(num, index) => {
-  if (num % 3 === 0) {
-    arr[index] = "Fizz";
-  } else if (num % 5 === 0) {
-    arr[index] = "Buzz";
-  } else if (num % 3 === 0 && num % 5 === 0) {
-    arr[index] = "Fizz Buzz";
-  } else {
-    arr[index] = num;
-  }
-};
-return arr;
+  let arrN = [];
+  arr.forEach((num) => {
+    if (num % 3 === 0) {
+      arrN.push("Fizz");
+    } else if (num % 5 === 0) {
+      arrN.push("Buzz");
+    } else if (num % 3 === 0 && num % 5 === 0) {
+      arrN.push("Fizz Buzz");
+    } else {
+      arrN.push(num);
+    }
+  });
+  return arrN;
 };
 
 /* ------------------------------------------------------------------------------------------------
