@@ -101,7 +101,7 @@ const people = [
 
 const sortPeople = (arr) => {
     // Solution code here...
-    return arr.store((a, b) => a.lastName > b.lastName);
+    return arr.sort((a, b) => a.lastName > b.lastName);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -116,13 +116,13 @@ If two people have the same full name, the younger one should come first. Do not
 
 const sortPeopleBetter = (arr) => {
     // Solution code here...
-    return arr.sort((a,b) => {
-        if (a.lastName === b.lastName) {
-            return a.firstName > b.firstName;
-        } else if(a.firstName === b.firstName && a.lastName === b.lastName) {
-            return a.age > b.age;
+    return arr.sort((a, b) => {
+        if (a.firstName === b.firstName && a.lastName === b.lastName) {
+            return a.age - b.age;
+        } else if (a.lastName === b.lastName) {
+            return a.firstName < b.firstName ? -1 : 1;
         } else {
-            return a.lastName > b.lastName;
+            return a.lastName < b.lastName ? -2 : 2;
         }
     });
 };
@@ -159,9 +159,10 @@ const sortMeetingsByDay = (arr) => {
         "Wednesday": 5,
         "Thursday": 6,
         "Friday": 7,
-      };
-    return arr.sort((meeting1,meeting2) => {
-        days[meeting1.dayOfWeek.toLowerCase()] > days[meeting2.dayOfWeek.toLowerCase()]});
+    };
+    return arr.sort((meeting1, meeting2) => {
+        days[meeting1.dayOfWeek] < days[meeting2.dayOfWeek ? -3 : 3]
+    });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -180,9 +181,9 @@ const sortSchedule = (arr) => {
         let theNumb = Number(num).end - Number(num).start;
         return theNumb;
     }
-    return arr.sort((a,b) => {
-        if (a.dayOfWeek === b.dayOfWeek && a.start === b.start){
-            return (numbers(a)) > (numbers(b));
+    return arr.sort((a, b) => {
+        if (a.dayOfWeek === b.dayOfWeek && a.start === b.start) {
+            return (numbers(a)) - (numbers(b));
         }
     });
 };
