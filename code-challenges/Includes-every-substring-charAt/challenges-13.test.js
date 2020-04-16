@@ -10,6 +10,9 @@ For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['t', 
 
 const firstLetters = (arr) => {
   // Solution code here...
+  return arr.map(val => {
+    return val.substring(0, 1);
+  })
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -22,6 +25,13 @@ For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['this
 
 const findHappiness = (arr) => {
   // Solution code here...
+  let values = [];
+  arr.forEach(el => {
+    if (el.includes(':)')) {
+      values.push(el);
+    }
+  })
+  return values;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -34,6 +44,13 @@ For example, (123) 456-7890 returns 1234567890
 
 const standardizePhoneNumbers = (arr) => {
   // Solution code here...
+  return arr.map(el => {
+    el = el.replace('-', '')
+    el = el.replace(' ', '')
+    el = el.replace(')', '')
+    el = el.replace('(', '')
+    return el;
+  })
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -46,6 +63,14 @@ For example, 'abcdefg' returns 'bdf'
 
 const onlyOddChars = (str) => {
   // Solution code here...
+  let string = '';
+  for (let i = 0; i < str.length; i++) {
+    if (i % 2 !== 0) {
+      string = string + str.charAt(i);
+    }
+  }
+  return string;
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -56,6 +81,13 @@ Write a function named allHappy that takes in an array of strings and returns a 
 
 const allHappy = (arr) => {
   // Solution code here...
+  let include = true;
+  arr.forEach(el => {
+    if (!(el.includes(':)'))) {
+      include = false;
+    }
+  })
+  return include;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -66,6 +98,13 @@ Write a function named findAnything that takes in an array of strings, along wit
 
 const findAnything = (arr, target) => {
   // Solution code here...
+  let strings = [];
+  arr.forEach(el => {
+    if (el.includes(target)) {
+      strings.push(el);
+    }
+  })
+  return strings;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -76,6 +115,13 @@ Write a function named findEvery that takes in an array of strings, along with a
 
 const findEvery = (arr, target) => {
   // Solution code here...
+  let result = true;
+  arr.forEach(val => {
+    if (!(val.includes(target))) {
+      result = false;
+    }
+  })
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -148,7 +194,7 @@ describe('Testing challenge 1', () => {
   test('It should return the first letter of each element of the array', () => {
     const words = ['apple', 'banana', 'cantaloupe'];
 
-    expect(firstLetters(words)).toStrictEqual(['a','b','c']);
+    expect(firstLetters(words)).toStrictEqual(['a', 'b', 'c']);
     expect(firstLetters(['a', 'b', 'c', 'd'])).toStrictEqual(['a', 'b', 'c', 'd']);
     expect(firstLetters([])).toStrictEqual([]);
   });
