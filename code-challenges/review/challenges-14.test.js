@@ -10,6 +10,9 @@ For example, ['apple', 'banana', 'MacGyver'] returns ['Apple', 'Banana', 'MacGyv
 
 const toTitleCase = (arr) => {
   // Solution code here...
+  return arr.map((val) => {
+    return val.charAt(0).toUpperCase()+`${val.slice(1,val.length)}`;
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -85,6 +88,13 @@ let starWarsData = [{
 
 let biggerThanLuke = (arr) => {
   // Solution code here...
+  let theNames = '';
+  arr.filter((val) =>{
+    if(Number(val.mass) > 77) {
+      theNames = theNames + val.name + ' - ';
+    }
+  })
+  return theNames.slice(0,theNames.length-3);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -103,6 +113,17 @@ This data could be sorted by name or price.
 
 const sortBy = (property, arr) => {
   // Solution code here...
+    if(property === 'name'){
+    arr.sort((a,b) => {
+    if(a[`${property}`]<b[`${property}`]) return -1;
+    if(a[`${property}`]>b[`${property}`]) return 1;
+    });
+    }else{
+    arr.sort((a,b)=>{
+    return a[`${property}`] - b[`${property}`];
+    })
+     }
+    return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -119,6 +140,11 @@ https:/missingslash.org returns false because the URL is malformed
 ------------------------------------------------------------------------------------------------ */
 const isSecure = (url) => {
 // Solution code here...
+  if(url.slice(0,5).includes('s') && url.includes('//')){
+    return true
+  }else{
+    return false
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
