@@ -24,6 +24,15 @@ const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 
 const grandTotal = (stores) => {
   // Solution code here...
+  let sumArray = [];
+  for (let i = 0; i < hoursOpen.length; i++) {
+    let sum = 0;
+    for (let j = 0; j < stores.length; j++) {
+      sum += stores[j][i]
+    }
+    sumArray.push(sum);
+  }
+  return sumArray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -38,12 +47,12 @@ Write a function named salesData that uses forEach to iterate over the hourlySal
 
 const salesData = (hours, data) => {
   // Solution code here...
-  // let sales = [];
-  // sales.push({
-  //     sales: `${val} cookies`,
-  //     time: hours
-  //   });
-  // return sales;
+  let values = [];
+  data.forEach((val, idx) => {
+    let theSales = { sales: `${val} cookies`, time: `${hours[idx]}` }
+    values.push(theSales);
+  });
+  return values;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -105,6 +114,7 @@ For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 
 const calculateProduct = (numbers) => {
   // Solution code here...
+  return numbers.reduce((acc, el) => el.reduce((acc2, el) => acc2 * el, 1) * acc, 1);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -162,6 +172,7 @@ For example, excel('1,1,1\n4,4,4\n9,9,9') returns [3, 12, 27].
 
 const excel = (str) => {
   // Solution code here...
+  return str.split('\n').map(value => value.split(',')).map(value => value.map(value => Number(value)).reduce((acc, value) => acc += value, 0));
 };
 
 /* ------------------------------------------------------------------------------------------------
