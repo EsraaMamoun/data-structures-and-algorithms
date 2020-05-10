@@ -7,7 +7,8 @@ Write a function named getCourseKeys that takes in the courseInfo object and ret
 
 For example: (['name', 'duration', 'topics', 'finalExam']).
 ------------------------------------------------------------------------------------------------ */
-const courseInfo = { name: 'Code 301', duration: { dayTrack: '4 weeks', eveningTrack: '8 weeks'},
+const courseInfo = {
+  name: 'Code 301', duration: { dayTrack: '4 weeks', eveningTrack: '8 weeks' },
   topics: ['SMACSS', 'APIs', 'NodeJS', 'SQL', 'jQuery', 'functional programming'],
   finalExam: true
 };
@@ -92,7 +93,15 @@ hasChildrenValues(characters, 'Sansa') will return false
 
 const hasChildrenValues = (arr, character) => {
   // Solution code here...
-
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].name === character) {
+      if (arr[i].children !== null) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -104,7 +113,15 @@ The input and output of this function are the same as the input and output from 
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenEntries = (arr, character) => {
-  // Solution code here...
+  let haveChild = 0;
+  Object.entries(arr).forEach(el => {
+    el.forEach(val => {
+      if (val.name === character) {
+        haveChild = val.children.length > 0 ? true : false;
+      }
+    })
+  })
+  return haveChild;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -115,6 +132,14 @@ Write a function named totalCharacters that takes in an array and returns the nu
 
 const totalCharacters = (arr) => {
   // Solution code here...
+  let counter = 0;
+  arr.forEach(obj => {
+    Object.values(obj).forEach(val => {
+      if (val)
+        counter++;
+    });
+  });
+  return counter;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -130,6 +155,23 @@ For example: [{ house: 'Stark', members: 7 }, { house: 'Arryn', members: 3 }, ..
 const houseSize = (arr) => {
   const sizes = [];
   // Solution code here...
+  let houseObj = {};
+  Object.values(arr).forEach(elm =>
+  {
+    var count = 1;
+    if (elm.spouse)
+      count++;
+    elm.children.forEach(() =>
+    {
+      count++;
+      houseObj = {house : elm.house,members :count};
+    });
+    if (elm.house === 'Greyjoy' || elm.house === 'Snow')
+    {
+      houseObj = {house : elm.house,members :count};
+    }
+    sizes.push(houseObj);
+  });
   return sizes;
 };
 
