@@ -11,7 +11,7 @@ For example, ['apple', 'banana', 'MacGyver'] returns ['Apple', 'Banana', 'MacGyv
 const toTitleCase = (arr) => {
   // Solution code here...
   return arr.map((val) => {
-    return val.charAt(0).toUpperCase()+`${val.slice(1,val.length)}`;
+    return val.charAt(0).toUpperCase() + `${val.slice(1, val.length)}`;
   });
 };
 
@@ -89,12 +89,12 @@ let starWarsData = [{
 let biggerThanLuke = (arr) => {
   // Solution code here...
   let theNames = '';
-  arr.filter((val) =>{
-    if(Number(val.mass) > 77) {
+  arr.filter((val) => {
+    if (Number(val.mass) > 77) {
       theNames = theNames + val.name + ' - ';
     }
   })
-  return theNames.slice(0,theNames.length-3);
+  return theNames.slice(0, theNames.length - 3);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -113,17 +113,17 @@ This data could be sorted by name or price.
 
 const sortBy = (property, arr) => {
   // Solution code here...
-    if(property === 'name'){
-    arr.sort((a,b) => {
-    if(a[`${property}`]<b[`${property}`]) return -1;
-    if(a[`${property}`]>b[`${property}`]) return 1;
+  if (property === 'name') {
+    arr.sort((a, b) => {
+      if (a[`${property}`] < b[`${property}`]) return -1;
+      if (a[`${property}`] > b[`${property}`]) return 1;
     });
-    }else{
-    arr.sort((a,b)=>{
-    return a[`${property}`] - b[`${property}`];
+  } else {
+    arr.sort((a, b) => {
+      return a[`${property}`] - b[`${property}`];
     })
-     }
-    return arr;
+  }
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -139,10 +139,10 @@ https://secure.com returns true because the URL is secure
 https:/missingslash.org returns false because the URL is malformed
 ------------------------------------------------------------------------------------------------ */
 const isSecure = (url) => {
-// Solution code here...
-  if(url.slice(0,5).includes('s') && url.includes('//')){
+  // Solution code here...
+  if (url.slice(0, 5).includes('s') && url.includes('//')) {
     return true
-  }else{
+  } else {
     return false
   }
 };
@@ -168,6 +168,19 @@ Here is a sample board:
 
 const detectTicTacToeWin = (board) => {
   // Solution code here...
+  const helper = ((row1, col1, row2, col2, row3, col3) => {
+    return board[row1][col1] !== '' && board[row1][col1] === board[row2][col2] && board[row2][col2] === board[row3][col3];
+  });
+
+  if (helper(0, 0, 0, 1, 0, 2)) return true;
+  else if (helper(1, 0, 1, 1, 1, 2)) return true;
+  else if (helper(2, 0, 2, 1, 2, 2)) return true;
+  else if (helper(0, 0, 1, 0, 2, 0)) return true;
+  else if (helper(0, 1, 1, 1, 2, 1)) return true;
+  else if (helper(0, 2, 1, 2, 2, 2)) return true;
+  else if (helper(0, 0, 1, 1, 2, 2)) return true;
+  else if (helper(0, 2, 1, 1, 2, 0)) return true;
+  else return false;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -184,7 +197,7 @@ Run your tests from the console: jest challenge-14.test.js
 describe('Testing challenge 1', () => {
   test('It should convert each word to title case', () => {
     const words = ['apple', 'banana', 'MacGyver'];
-    expect(toTitleCase(words)).toStrictEqual(['Apple','Banana','MacGyver']);
+    expect(toTitleCase(words)).toStrictEqual(['Apple', 'Banana', 'MacGyver']);
 
     expect(toTitleCase([])).toStrictEqual([]);
   });
@@ -201,13 +214,13 @@ describe('Testing challenge 3', () => {
   test('It should sort items by a price', () => {
 
     expect(sortBy('price', [
-      {name: 'Sweatshirt', price: 45},
-      {name: 'Bookmark', price: 2.50},
-      {name: 'Tote bag', price: 15}
+      { name: 'Sweatshirt', price: 45 },
+      { name: 'Bookmark', price: 2.50 },
+      { name: 'Tote bag', price: 15 }
     ])).toStrictEqual([
-      {name: 'Bookmark', price: 2.50},
-      {name: 'Tote bag', price: 15},
-      {name: 'Sweatshirt', price: 45},
+      { name: 'Bookmark', price: 2.50 },
+      { name: 'Tote bag', price: 15 },
+      { name: 'Sweatshirt', price: 45 },
     ]);
 
   });
@@ -215,13 +228,13 @@ describe('Testing challenge 3', () => {
   test('It should sort items by name', () => {
 
     expect(sortBy('name', [
-      {name: 'Sweatshirt', price: 45},
-      {name: 'Bookmark', price: 2.50},
-      {name: 'Tote bag', price: 15}
+      { name: 'Sweatshirt', price: 45 },
+      { name: 'Bookmark', price: 2.50 },
+      { name: 'Tote bag', price: 15 }
     ])).toStrictEqual([
-      {name: 'Bookmark', price: 2.50},
-      {name: 'Sweatshirt', price: 45},
-      {name: 'Tote bag', price: 15},
+      { name: 'Bookmark', price: 2.50 },
+      { name: 'Sweatshirt', price: 45 },
+      { name: 'Tote bag', price: 15 },
     ]);
   });
 });

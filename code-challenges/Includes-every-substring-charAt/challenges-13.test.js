@@ -138,6 +138,9 @@ For example, [['Brook Testing', 'Actual Person'], ['Human Person', 'Brook again'
 
 const unenrollBrook = (arr) => {
   // Solution code here...
+  return arr.map(element => {
+    return element.filter(val => !val.includes('Brook'))
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -165,6 +168,9 @@ const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Sat
 
 const sortByDay = (arr) => {
   // Solution code here...
+  return daysOfWeek.map(element => {
+    return arr.filter(val => val.includes(element))
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -177,6 +183,7 @@ For example, ['abcd', 'efgh', 'ijkl', 'mnop'] returns ['a', 'f', 'k', 'p']
 
 const characterByIndex = (arr) => {
   // Solution code here...
+  return arr.map((element, idx) => element.charAt(idx));
 };
 
 /* ------------------------------------------------------------------------------------------------

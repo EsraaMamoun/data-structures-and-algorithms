@@ -135,6 +135,17 @@ const weeklyTemperatures = [
 
 const averageDailyTemperature = (weather) => {
   // Solution code here...
+  let avgTemp = 0;
+  let numOfDays = 0;
+
+  for (let i = 0; i < weather.length; i++) {
+    for (let j = 0; j < weather[i].length; j++) {
+      numOfDays++;
+      avgTemp += weather[i][j];
+    }
+  }
+  let total = avgTemp / numOfDays;
+  return total;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -156,6 +167,22 @@ let lowestWeeklyTemperatureData = [
 
 const lowestWeeklyAverage = (weather) => {
   // Solution code here...
+  let lowest = 100;
+
+  for (let i = 0; i < weather.length; i++) {
+    let avgTemp = 0;
+    let numOfDays = 0;
+
+    for (let j = 0; j < weather[i].length; j++) {
+      numOfDays++;
+      avgTemp += weather[i][j];
+    }
+
+    let total = avgTemp / numOfDays;
+    if (total < lowest)
+      lowest = total;
+  }
+  return lowest;
 };
 
 /* ------------------------------------------------------------------------------------------------

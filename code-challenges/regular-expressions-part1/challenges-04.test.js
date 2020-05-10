@@ -28,8 +28,7 @@ Return an array containing all the matches.
 
 const isCapitalized = (str) => {
   // Solution code here...
-  const word = /([^A-Z]n)\b/g;
-  return word.match(str);
+  return str.match(/[A-Z][A-z]+/g) || [];
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -40,6 +39,16 @@ Write a function named citiesAtoJ that takes in an array of city names and uses 
 
 const citiesAtoJ = (arr) => {
   // Solution code here...
+  let Capital=/^[A-J]/g;
+  let words = [];
+  arr.forEach(e => {
+    let te = e.match(Capital);
+    if(te) {
+      let word = e.match(/[A-z]+/)[0]
+      words.push(word);
+    }
+  })
+  return words;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -56,13 +65,7 @@ Do not use the vertical bar (pipe) in your pattern.
 
 const matchMonth = (input) => {
   // Solution code here...
-  const october = [/October/g,/Oct/g,/october/g,/oct/g];
-  if (october[0].test(input) || october[1].test(input) || october[2].test(input) || october[3].test(input)) {
-    return true;
-  }
-  else {
-    return false;
-  }
+  return input.toString().match(/^(October|Oct|october|oct)$/g);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -77,6 +80,7 @@ The expected output of "Hello, and have a wonderful day!" is ["and ", "have ", "
 
 const noPunctuation = str => {
   // Solution code here...
+  return str.toString().match(/[A-z0-9]+\s/ig);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -93,6 +97,7 @@ For example, 'Welcome to Code 301!' will return 'W_lc_m_ t_ C_d_ 301!'.
 
 let hangman = (str) => {
   // Solution code here...
+  return str.toString().replace(/[a]|[e]|[i]|[o]|[u]/ig, '_');
 };
 
 /* ------------------------------------------------------------------------------------------------
